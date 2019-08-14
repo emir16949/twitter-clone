@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { UserDataModel } from '../../../models/user-data.model';
+import { AuthService } from '../../../services/auth.service';
+import { UserService } from '../../../services/user/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,7 +11,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  userData: UserDataModel;
 
-  ngOnInit() { }
+  constructor(private userService: UserService, private authService: AuthService) { }
+
+  ngOnInit() {
+    this.userService.fetchUserData(this.authService.getCurrentUser()).subscribe(userData => {
+      this.userData = userData;
+    }
+    );
+  }
 }

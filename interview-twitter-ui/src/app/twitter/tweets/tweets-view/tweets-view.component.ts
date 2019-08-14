@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {TweetModel} from "../../../models/tweet.model";
-import {TweetService} from "../../../services/tweet/tweet.service";
-import {Observable} from "rxjs/Observable";
+import { Component, OnInit } from '@angular/core';
+import { TweetModel } from "../../../models/tweet.model";
+import { TweetService } from "../../../services/tweet/tweet.service";
+import { Observable } from "rxjs/Observable";
 
 @Component({
   selector: 'app-tweets-view',
