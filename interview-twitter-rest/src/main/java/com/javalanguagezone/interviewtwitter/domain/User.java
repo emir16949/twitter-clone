@@ -1,17 +1,28 @@
 package com.javalanguagezone.interviewtwitter.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import javax.persistence.*;
-import java.util.*;
-
 import static java.util.Collections.singletonList;
 import static javax.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PRIVATE;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Getter
@@ -20,7 +31,9 @@ import static lombok.AccessLevel.PRIVATE;
 @ToString(exclude = {"following", "followers"})
 @EqualsAndHashCode(exclude = {"following", "followers"})
 public class User implements UserDetails {
-  public static final List<SimpleGrantedAuthority> AUTHORITIES = singletonList(new SimpleGrantedAuthority("USER"));
+
+  public static final List<SimpleGrantedAuthority> AUTHORITIES = singletonList(
+    new SimpleGrantedAuthority("USER"));
 
   @Id
   @GeneratedValue(strategy = IDENTITY)
@@ -40,12 +53,18 @@ public class User implements UserDetails {
   @JsonIgnore
   private String password;
 
-  public User(String username, String password) {
+  private String name;
+
+  private String surname;
+
+  public User(String username, String password, String name, String surname) {
     this.username = username;
     this.password = password;
+    this.name = name;
+    this.surname = surname;
   }
 
-  public void addFollowing(User... users){
+  public void addFollowing(User... users) {
     following.addAll(Arrays.asList(users));
   }
 

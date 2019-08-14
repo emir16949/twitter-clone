@@ -1,18 +1,23 @@
 package com.javalanguagezone.interviewtwitter.domain;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
-
 import static javax.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PRIVATE;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @NoArgsConstructor(access = PRIVATE)
 public class Tweet {
+
   protected static final int TWEET_MAX_LENGTH = 140;
+
   @Id
   @GeneratedValue(strategy = IDENTITY)
   private Long id;
@@ -29,6 +34,7 @@ public class Tweet {
   }
 
   public boolean isValid() {
-    return author != null && content != null && !content.isEmpty() && content.length() <= TWEET_MAX_LENGTH;
+    return author != null && content != null && !content.isEmpty()
+      && content.length() <= TWEET_MAX_LENGTH;
   }
 }

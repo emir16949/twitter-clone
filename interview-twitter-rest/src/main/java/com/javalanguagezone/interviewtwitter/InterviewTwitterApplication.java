@@ -23,18 +23,19 @@ public class InterviewTwitterApplication {
     private UserRepository userRepository;
     private TweetRepository tweetRepository;
 
-    public BootstrapBitcoinEvangelists(UserRepository userRepository, TweetRepository tweetRepository) {
+    public BootstrapBitcoinEvangelists(UserRepository userRepository,
+      TweetRepository tweetRepository) {
       this.userRepository = userRepository;
       this.tweetRepository = tweetRepository;
     }
 
     @Override
     public void run(ApplicationArguments args) {
-      User rogerVer = userRepository.save(new User("rogerkver", "password"));
-      User andreasAntonopoulos = userRepository.save(new User("aantonop", "password"));
-      User vitalikButerin = userRepository.save(new User("VitalikButerin", "password"));
-      User charlieLee = userRepository.save(new User("SatoshiLite", "password"));
-      User satoshiNakamoto = userRepository.save(new User("satoshiNakamoto", "password"));
+      User rogerVer = userRepository.save(new User("rogerkver", "password", "Roger", "Ver"));
+      User andreasAntonopoulos = userRepository.save(new User("aantonop", "password", "Andreas", "Antonopoulos"));
+      User vitalikButerin = userRepository.save(new User("VitalikButerin", "password", "Vitalik", "Buterin"));
+      User charlieLee = userRepository.save(new User("SatoshiLite", "password", "Charlie", "Lee"));
+      User satoshiNakamoto = userRepository.save(new User("satoshiNakamoto", "password", "Satoshi", "Nakamoto"));
 
       vitalikButerin.addFollowing(satoshiNakamoto, rogerVer);
       userRepository.save(vitalikButerin);
@@ -53,9 +54,12 @@ public class InterviewTwitterApplication {
       tweetRepository.save(new Tweet("Bitcoin cash is true Bitcoin!", rogerVer));
       tweetRepository.save(new Tweet("ETH is all about smart contracts", vitalikButerin));
       tweetRepository.save(new Tweet("Most of the ICO's will fail", andreasAntonopoulos));
-      tweetRepository.save(new Tweet("Cryptocurrencies are all about disruption", andreasAntonopoulos));
-      tweetRepository.save(new Tweet("Bitcoin mining is based on Proof of Work", andreasAntonopoulos));
-      tweetRepository.save(new Tweet("If Bitcoin is  crypto gold then Litecoin is crypto silver.", charlieLee));
+      tweetRepository
+        .save(new Tweet("Cryptocurrencies are all about disruption", andreasAntonopoulos));
+      tweetRepository
+        .save(new Tweet("Bitcoin mining is based on Proof of Work", andreasAntonopoulos));
+      tweetRepository
+        .save(new Tweet("If Bitcoin is  crypto gold then Litecoin is crypto silver.", charlieLee));
     }
   }
 }
