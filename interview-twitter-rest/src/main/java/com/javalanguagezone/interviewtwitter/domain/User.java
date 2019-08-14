@@ -53,8 +53,10 @@ public class User implements UserDetails {
   @JsonIgnore
   private String password;
 
+  @Column
   private String name;
 
+  @Column
   private String surname;
 
   public User(String username, String password, String name, String surname) {
