@@ -76,6 +76,6 @@ public class TweetControllerIntegrationTest extends RestIntegrationTest {
   }
 
   private List<String> extractAuthorNames(TweetDTO[] body) {
-    return Arrays.stream(body).map(TweetDTO::getAuthor).distinct().collect(toList());
+    return Arrays.stream(body).map(x -> x.getAuthor().getUsername()).distinct().collect(toList());
   }
 }

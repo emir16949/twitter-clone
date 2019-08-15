@@ -1,16 +1,17 @@
 <table class="table" id="tweets-table">
   <thead>
-  <tr>
-    <th>Id</th>
-    <th>Author</th>
-    <th>Content</th>
-  </tr>
+    <tr>
+      <th>Id</th>
+      <th>Author</th>
+      <th>Content</th>
+    </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let tweet of tweets">
-    <td>{{tweet.id}}</td>
-    <td><a routerLink="/app/tweets/{{tweet.author}}">{{tweet.author}}</a></td>
-    <td>{{tweet.content}}</td>
-  </tr>
+    <tr *ngFor="let tweet of tweets">
+      <td>{{tweet.id}}</td>
+      <td><a routerLink="/app/tweets/{{tweet.author.username}}">{{tweet.author.username}} ({{tweet.author.name}}
+          {{tweet.author.surname}})</a></td>
+      <td>{{tweet.content}}</td>
+    </tr>
   </tbody>
 </table>

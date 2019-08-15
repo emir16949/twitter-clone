@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TweetModel } from "../../../models/tweet.model";
-import { TweetService } from "../../../services/tweet/tweet.service";
-import { Observable } from "rxjs/Observable";
+import { Observable } from 'rxjs/Observable';
+import { TweetModel } from '../../../models/tweet.model';
+import { TweetService } from '../../../services/tweet/tweet.service';
 
 @Component({
   selector: 'app-tweets-view',
@@ -12,11 +12,9 @@ export class TweetsViewComponent implements OnInit {
 
   $tweets: Observable<TweetModel[]>;
 
-  constructor(private tweetService: TweetService) {
-  }
+  constructor(private tweetService: TweetService) { }
 
   ngOnInit() {
     this.$tweets = this.tweetService.fetch();
   }
-
 }

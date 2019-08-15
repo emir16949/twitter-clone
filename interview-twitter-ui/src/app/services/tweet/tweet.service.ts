@@ -8,8 +8,7 @@ const ENDPOINT_BASE = '/api/tweets';
 @Injectable()
 export class TweetService {
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) { }
 
   fetch(): Observable<TweetModel[]> {
     return this.http.get<TweetModel[]>(ENDPOINT_BASE);

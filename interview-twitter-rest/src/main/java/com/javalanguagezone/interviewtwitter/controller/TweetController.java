@@ -1,19 +1,24 @@
 package com.javalanguagezone.interviewtwitter.controller;
 
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.CREATED;
+
 import com.javalanguagezone.interviewtwitter.controller.dto.ErrorMessage;
 import com.javalanguagezone.interviewtwitter.service.TweetService;
 import com.javalanguagezone.interviewtwitter.service.TweetService.InvalidTweetException;
 import com.javalanguagezone.interviewtwitter.service.TweetService.UnknownUsernameException;
 import com.javalanguagezone.interviewtwitter.service.dto.TweetDTO;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.constraints.Size;
 import java.security.Principal;
 import java.util.Collection;
-
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
-import static org.springframework.http.HttpStatus.CREATED;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("tweets")
@@ -44,14 +49,14 @@ public class TweetController {
 
   @ExceptionHandler
   @ResponseStatus(BAD_REQUEST)
-  public ErrorMessage handleUnknownUsernameException(UnknownUsernameException e){
+  public ErrorMessage handleUnknownUsernameException(UnknownUsernameException e) {
     log.warn("", e);
     return new ErrorMessage(String.format("Unknown user '%s'", e.getUsername()));
   }
 
   @ExceptionHandler
   @ResponseStatus(BAD_REQUEST)
-  public ErrorMessage handleInvalidTweetException(InvalidTweetException e){
+  public ErrorMessage handleInvalidTweetException(InvalidTweetException e) {
     log.warn("", e);
     return new ErrorMessage("We're unable to accept tweet");
   }
